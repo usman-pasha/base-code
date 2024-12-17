@@ -1,0 +1,195 @@
+version: '3.1'
+services:
+
+#########################################
+# node core api instances
+#########################################
+  api1:
+    image: carbasketfactory:v1
+    container_name: carbasket_api1
+    restart: always
+    ports:
+      - 4000:4000
+    volumes:
+      - ./:/usr/src/app      
+    networks:
+      - app-network      
+
+  api2:
+    image: carbasketfactory:v1
+    container_name: carbasket_api2
+    restart: always
+    ports:
+      - 4001:4000
+    volumes:
+      - ./:/usr/src/app      
+    networks:
+      - app-network   
+
+  api3:
+    image: carbasketfactory:v1
+    container_name: carbasket_api3
+    restart: always
+    ports:
+      - 4002:4000
+    volumes:
+      - ./:/usr/src/app      
+    networks:
+      - app-network      
+
+  api4:
+    image: carbasketfactory:v1
+    container_name: carbasket_api4
+    restart: always
+    ports:
+      - 4003:4000
+    volumes:
+      - ./:/usr/src/app      
+    networks:
+      - app-network      
+
+  api5:
+    image: carbasketfactory:v1
+    container_name: carbasket_api5
+    restart: always
+    ports:
+      - 4004:4000
+    volumes:
+      - ./:/usr/src/app      
+    networks:
+      - app-network      
+
+  api6:
+    image: carbasketfactory:v1
+    container_name: carbasket_api6
+    restart: always
+    ports:
+      - 4005:4000
+    volumes:
+      - ./:/usr/src/app      
+    networks:
+      - app-network   
+
+  api7:
+    image: carbasketfactory:v1
+    container_name: carbasket_api7
+    restart: always
+    ports:
+      - 4006:4000
+    volumes:
+      - ./:/usr/src/app      
+    networks:
+      - app-network      
+
+  api8:
+    image: carbasketfactory:v1
+    container_name: carbasket_api8
+    restart: always
+    ports:
+      - 4007:4000
+    volumes:
+      - ./:/usr/src/app      
+    networks:
+      - app-network  
+
+  api9:
+    image: carbasketfactory:v1
+    container_name: carbasket_api9
+    restart: always
+    ports:
+      - 4008:4000
+    volumes:
+      - ./:/usr/src/app      
+    networks:
+      - app-network      
+
+  api10:
+    image: carbasketfactory:v1
+    container_name: carbasket_api10
+    restart: always
+    ports:
+      - 4009:4000
+    volumes:
+      - ./:/usr/src/app      
+    networks:
+      - app-network  
+
+  api11:
+    image: carbasketfactory:v1
+    container_name: carbasket_api11
+    restart: always
+    ports:
+      - 4010:4000
+    volumes:
+      - ./:/usr/src/app      
+    networks:
+      - app-network      
+
+  api12:
+    image: carbasketfactory:v1
+    container_name: carbasket_api12
+    restart: always
+    ports:
+      - 4011:4000
+    volumes:
+      - ./:/usr/src/app      
+    networks:
+      - app-network    
+
+  api13:
+    image: carbasketfactory:v1
+    container_name: carbasket_api13
+    restart: always
+    ports:
+      - 4012:4000
+    volumes:
+      - ./:/usr/src/app      
+    networks:
+      - app-network      
+
+  api14:
+    image: carbasketfactory:v1
+    container_name: carbasket_api14
+    restart: always
+    ports:
+      - 4013:4000
+    volumes:
+      - ./:/usr/src/app      
+    networks:
+      - app-network      
+
+#########################################
+# Nginx Load Balancer
+#########################################
+  nginx:
+    image: nginx:latest
+    container_name: nginx_load_balancer
+    ports:
+      - 80:80  # Expose Nginx on port 80
+    depends_on:
+      - api1
+      - api2
+      - api3
+      - api4
+      - api5
+      - api6
+      - api7
+      - api8
+      - api9
+      - api10
+      - api11
+      - api12
+      - api13
+      - api14
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - app-network
+
+#########################################
+# networks
+######################################### 
+
+networks:
+  app-network:
+    driver: bridge  
